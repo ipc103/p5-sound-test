@@ -11,27 +11,27 @@ const run = (sk) => {
   let playing = false;
 
   sk.setup = () => {
-    const canvas = sk.createCanvas(window.innerWidth, window.innerHeight);
+    sk.createCanvas(window.innerWidth, window.innerHeight);
   }
 
   sk.draw = () => {
     sk.background(sk.mouseX / 2, sk.mouseY /2);
 
     if (playing) {
+      console.log('Playback initiated')
+
       const pitch = Math.round(sk.mouseX / 100)
       const noteIndex = Math.round( (sk.mouseY / window.innerHeight) * notes.length)
       const note = notes[noteIndex]
       const tone = note + pitch
       monoSynth.triggerAttack(tone);
+    } else {
+      monoSynth.triggerRelease();
     }
   }
 
   sk.mousePressed = () => {
     playing = !playing
-  }
-
-  sk.mouseReleased = () => {
-    monoSynth.triggerRelease();
   }
 }
 
