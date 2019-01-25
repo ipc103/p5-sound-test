@@ -21,7 +21,6 @@ const run = (sk) => {
       const pitch = Math.round(sk.mouseX / 100)
       const noteIndex = Math.round( (sk.mouseY / window.innerHeight) * notes.length)
       const note = notes[noteIndex]
-      console.log(note)
       const tone = note + pitch
       monoSynth.triggerAttack(tone);
     }
